@@ -3,9 +3,11 @@ import Center from "~/components/Center";
 
 export default function Index() {
   return (
-    <main className="flex h-screen overflow-hiden w-full px-24">
-      <Center/>
-      <Sidebar/>
+    <main className=" bg-slate-100">
+      <div className="flex h-full overflow-hiden w-full lg:px-8 mx-auto max-w-7xl">
+        <Center />
+        <Sidebar />
+      </div>
     </main>
   );
 }
