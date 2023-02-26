@@ -1,14 +1,35 @@
-import Ads from "./Ads"
+import Ads from "./Ads";
+import SongSidebar from "./SongSidebar";
 
 function Sidebar() {
   return (
-    // <div className="text-gray-500 px-5 pt-5 pb-36 text-xs lg:text-sm border-r border-gray-900 h-screen overflow-y-scroll sm:max-w-[12rem] lg:max-w-[15rem] hidden md:block">
-    <div className=" bg-white px-5 border-l-2 border-gray-100 w-1/4 h-full ">
+    <div className="ads bg-white px-5 border-l-2 border-gray-100 w-1/4 h-full sticky top-0">
+      {/* Ads */}
       <div className="flex justify-center">
-        <Ads/>
+        <Ads />
+      </div>
+      {/* Song liked */}
+      <div className="likedList mb-6">
+        <div className="top relative text-sm font-extralight border-b mb-3">
+          <div className="totalLiked">Liked</div>
+          <button className="absolute top-0 right-0">View All</button>
+        </div>
+        <SongSidebar />
+        <SongSidebar />
+        <SongSidebar />
+      </div>
+      {/* Listening History */}
+      <div className="HistoryList mb-6">
+        <div className="top relative text-sm font-extralight border-b mb-3">
+          <div className="totalLiked">Listening History</div>
+          <button className="absolute top-0 right-0">View All</button>
+        </div>
+        <SongSidebar />
+        <SongSidebar />
+        <SongSidebar />
       </div>
     </div>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;
