@@ -9,6 +9,7 @@ import {
 } from "@remix-run/react";
 import Header from "./components/Header";
 import stylesheet from "~/tailwind.css";
+import MusicBar from "./components/MusicBar";
 
 
 export const meta: MetaFunction = () => ({
@@ -27,6 +28,7 @@ export default function App() {
       <body>
         <Header/>
         <Outlet />
+        <MusicBar/>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

@@ -1,8 +1,17 @@
 function Song() {
   return (
-    <div className="w-36 h-40 mx-3 my-3 ">
-      <img className="object-center w-36 h-36 rounded-lg " src="https://picsum.photos/200" alt="" />
-      <div className="flex category justify-center font-medium">Category</div>
+    <div className=" min-w-[144px] h-48 mx-3 my-3 text-sm hover:scale-110 cursor-pointer transition duration-250 ease-out">
+      <div className="relative w-36 h-36 mb-3">
+        <img
+          className="object-center w-32 h-32 rounded-lg absolute z-30"
+          src="https://picsum.photos/200"
+          alt="logo"
+        />
+        <div className=" absolute bg-slate-300 rounded-lg w-32 h-32 translate-y-2 translate-x-2 z-20" />
+        <div className=" absolute bg-slate-200 rounded-lg w-32 h-32 translate-y-4 translate-x-4 z-10" />
+      </div>
+      <div className="category ">Category</div>
+      <div className="font-light">Top 50</div>
     </div>
   );
 }

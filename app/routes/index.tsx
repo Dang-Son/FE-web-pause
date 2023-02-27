@@ -1,5 +1,5 @@
 import Sidebar from "~/components/Sidebar";
-import Center from "~/components/Center";
+import Center from "~/routes/Home";
 
 export default function Index() {
   return (

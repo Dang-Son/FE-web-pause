@@ -3,7 +3,7 @@ import SongSidebar from "./SongSidebar";
 
 function Sidebar() {
   return (
-    <div className="ads bg-white px-5 border-l-2 border-gray-100 w-1/4 h-full sticky top-0">
+    <div className="ads bg-white px-5 border-l-2 border-gray-100 w-1/4 h-full sticky top-14 right-0">
       {/* Ads */}
       <div className="flex justify-center">
         <Ads />
