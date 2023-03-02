@@ -1,3 +1,4 @@
+import { CalendarDaysIcon, HeartIcon } from "@heroicons/react/20/solid";
 import Ads from "./Ads";
 import SongSidebar from "./SongSidebar";
 
@@ -8,11 +9,12 @@ function Sidebar() {
       <div className="flex justify-center">
         <Ads />
       </div>
-      {/* Song liked */}
+      {/* Your favorite songs */}
       <div className="likedList mb-6">
-        <div className="top relative text-sm font-extralight border-b mb-3">
-          <div className="totalLiked">Liked</div>
-          <button className="absolute top-0 right-0">View All</button>
+        <div className="top relative text-sm  border-b mb-3">
+          <HeartIcon className="h-5 pb-1 mr-1 inline-block "/>
+          <div className="totalLiked inline-block font-semibold">Your favorite songs</div>
+          <button className="absolute top-0 right-0 font-extralight">View All</button>
         </div>
         <SongSidebar />
         <SongSidebar />
@@ -20,9 +22,10 @@ function Sidebar() {
       </div>
       {/* Listening History */}
       <div className="HistoryList mb-6">
-        <div className="top relative text-sm font-extralight border-b mb-3">
-          <div className="totalLiked">Listening History</div>
-          <button className="absolute top-0 right-0">View All</button>
+        <div className="top relative text-sm border-b mb-3">
+          <CalendarDaysIcon className="h-5 pb-1 mr-1 inline-block"/>
+          <div className="totalLiked inline-block font-semibold">Listening History</div>
+          <button className="absolute top-0 right-0 font-extralight">View All</button>
         </div>
         <SongSidebar />
         <SongSidebar />

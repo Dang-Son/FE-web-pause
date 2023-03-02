@@ -38,7 +38,7 @@ export default function Example() {
           <a href="/" className="-m-1.5 p-1.5 flex items-center">
             <span className="sr-only">Your Company</span>
             <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
-            <div className="ml-2 font-black text-2xl">Pause</div>
+            <div className="ml-2 font-black text-1xl">Pause</div>
           </a>
         </div>
         <div className="flex lg:hidden">

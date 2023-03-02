@@ -1,6 +1,6 @@
 function SongSidebar() {
   return (
-    <div className="flex justify-start items-center my-4">
+    <div className="flex justify-start items-center my-4 onHover rounded-lg border">
       <img
         className="picture object-center w-16 h-16 rounded-lg "
         src="https://picsum.photos/200"
