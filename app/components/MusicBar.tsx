@@ -1,6 +1,4 @@
 import {
-  ArrowDownCircleIcon,
-  ArrowDownIcon,
   ArrowPathIcon,
   BackwardIcon,
   ForwardIcon,
@@ -10,7 +8,7 @@ import {
   SpeakerXMarkIcon,
   UserPlusIcon,
 } from "@heroicons/react/20/solid";
-import { HomeIcon, PauseIcon } from "@heroicons/react/24/outline";
+import { PauseIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
 const MusicBar = () => {
