@@ -3,7 +3,7 @@ import SongSidebar from "./SongSidebar";
 
 function SidebarArtist() {
   return (
-    <div className="w-1/4 bg-white h-screen border-l-2 border-gray-100 px-5 py-5">
+    <div className="w-1/4 bg-white h-fit border-l-2 border-gray-100 px-5 py-5 sticky top-20">
       <div className="likedList mb-6">
         <div className="top relative text-sm  border-b mb-3">
           <SignalIcon className="h-5 pb-1 mr-1 inline-block " />

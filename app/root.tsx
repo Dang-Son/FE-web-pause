@@ -11,7 +11,6 @@ import Header from "./components/Header";
 import stylesheet from "~/tailwind.css";
 import MusicBar from "./components/MusicBar";
 
-
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "Spotify",
@@ -24,11 +23,16 @@ export default function App() {
       <head>
         <Meta />
         <Links />
+
+        <link
+          href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body>
-        <Header/>
+        <Header />
         <Outlet />
-        <MusicBar/>
+        <MusicBar />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
@@ -38,4 +42,15 @@ export default function App() {
 }
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
+
+  { rel: "preconnect", href: "https://fonts.googleapis.com" },
+  {
+    rel: "preconnect",
+    href: "https://fonts.gstatic.com",
+    crossOrigin: "anonymous",
+  },
+  {
+    rel: "stylesheet",
+    href: "https://fonts.googleapis.com/css2?family=Nunito&display=swap",
+  },
 ];
