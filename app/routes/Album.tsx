@@ -10,8 +10,8 @@ function album() {
           <div className=" relative w-full h-80 bg-slate-200">
             <div className="content"></div>
             <img
-              className="object-center w-60 h-60 rounded-lg absolute bottom-4 right-4 z-30"
-              src="https://picsum.photos/200"
+              className=" object-cover h-80 w-full rounded-md "
+              src="https://picsum.photos/1000"
               alt="logo"
             />
           </div>

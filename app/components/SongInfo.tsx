@@ -3,7 +3,7 @@ import Hashtag from "./Hashtag";
 
 function SongInfo() {
   return (
-    <div className="flex w-3/4 h-full pt-5 bg-white">
+    <div className="flex w-3/4 h-screen pt-5 bg-white">
       <div className="w-1/4  h-full avatar justify-center">
         {/* avatar */}
         <div className="w-full flex justify-center mb-5">
