@@ -3,7 +3,7 @@
 @tailwind utilities;
 @layer components {
   .onHover {
-    @apply cursor-pointer  hover:shadow-lg border transition transform duration-100;
+    @apply cursor-pointer  hover:shadow-lg transition transform duration-100;
   }
 }
 @layer components {

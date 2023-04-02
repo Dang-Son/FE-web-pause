@@ -2,7 +2,10 @@ import { Link } from "@remix-run/react";
 
 function Song() {
   return (
-    <Link className=" min-w-[144px] h-48 mx-3 my-3 text-sm hover:scale-110 cursor-pointer transition duration-250 ease-out" to={"/album"}>
+    <Link
+      className=" min-w-[144px] h-48 mx-3 my-3 text-sm hover:scale-110 cursor-pointer transition duration-250 ease-out"
+      to={"/album"}
+    >
       <div className="relative w-36 h-36 mb-3">
         <img
           className="object-center w-32 h-32 rounded-lg absolute z-30"
