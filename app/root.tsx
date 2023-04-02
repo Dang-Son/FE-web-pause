@@ -1,4 +1,3 @@
-import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -10,6 +9,10 @@ import {
 import Header from "./components/Header";
 import stylesheet from "~/tailwind.css";
 import MusicBar from "./components/MusicBar";
+import type {
+  LinksFunction,
+  MetaFunction,
+} from "@remix-run/react/dist/routeModules";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
