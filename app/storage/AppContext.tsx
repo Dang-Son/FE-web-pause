@@ -19,13 +19,21 @@ export default createContext<TAppContext>({
     },
     isLoading: true,
     showMusicBar: true,
-    userData: "",
+    userData: {
+        id: "1",
+        attributes: {
+            avtURL: "https://picsum.photos/400",
+            email: "ductam@duck.com",
+            name: "ductam",
+        },
+    },
     sound: undefined,
     toggleIsPlaying: () => {},
     updateState: () => {},
 });
 
-export type TSong = {
+export type TSongResource = {
+    id: string;
     attributes: {
         audioURL: string;
         author_name: string;
@@ -34,9 +42,12 @@ export type TSong = {
         liked: number;
         playlist_id: string;
         views: number;
-        id: string;
+        category: string;
+        description: string;
     };
+};
 
+export type TSong = TSongResource & {
     relationships: {
         artist: {
             data: TArtist;
@@ -44,10 +55,29 @@ export type TSong = {
     };
 };
 
-export type TArtist = {
+export type TArtistResource = {
+    id: string;
     attributes: {
         name: string;
         user_id: string;
         followed: number;
+        avtURL: string;
+        songCount: number;
+    };
+    created_at: string;
+};
+
+export type TArtist = TArtistResource & {
+    relationships: {
+        songs: { data: TSongResource[] };
+    };
+};
+
+export type TUser = {
+    id: string;
+    attributes: {
+        avtURL: string;
+        email: string;
+        name: string;
     };
 };
