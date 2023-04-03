@@ -43,7 +43,10 @@ function Search() {
 
                             {result.length > 0 ? (
                                 result.map((song) => (
-                                    <SearchResults song={song} key={song.id} />
+                                    <SearchResults
+                                        song={song}
+                                        key={song.attributes.id}
+                                    />
                                 ))
                             ) : (
                                 <div> nothing here</div>
