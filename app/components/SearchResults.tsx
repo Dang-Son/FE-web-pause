@@ -8,31 +8,37 @@ import { HeartIcon, FlagIcon, PlayIcon } from "@heroicons/react/20/solid";
 import { Link } from "@remix-run/react";
 import type { TSong } from "~/storage/AppContext";
 
-type TSearchResultProps = {
+export type TSongProps = {
     song: TSong;
 };
-function SearchResults(prop: TSearchResultProps) {
+function SearchResults(prop: TSongProps) {
     const artist = prop.song.relationships.artist.data.attributes;
     const song = prop.song.attributes;
 
     return (
         <div className="flex h-24 my-7 mx-3">
-            <img
-                className="object-center w-24 h-24 rounded-sm "
-                src={song.imageURL}
-                alt="logo"
-            />
+            <Link
+                to={`/song/${prop.song.id}`}
+                className="block song_name text-xl w-24 h-24"
+            >
+                <img
+                    className="object-center w-24 h-24  rounded-sm "
+                    src={song.imageURL}
+                    alt="logo"
+                />
+            </Link>
+
             <div className="info ml-2 w-full h-full relative">
                 <div className="artist flex justify-between h-3/4">
                     <div className="">
                         <Link
-                            to="/Profile"
+                            to={`/profile/${prop.song.relationships.artist.data.id}`}
                             className=" block artist font-extralight text-gray-500"
                         >
                             {artist.name}
                         </Link>
                         <Link
-                            to="/SingleSong"
+                            to={`/song/${prop.song.id}`}
                             className="block song_name text-xl"
                         >
                             {song.name}
@@ -53,7 +59,13 @@ function SearchResults(prop: TSearchResultProps) {
                             <ShareIcon className=" h-3 mr-1" />
                             <div className="">Share</div>
                         </button>
-                        <button className="copy_link flex items-center btn px-2">
+                        <button
+                            className="copy_link flex items-center btn px-2"
+                            onClick={() => {
+                                navigator.clipboard.writeText("google.com");
+                                alert("go here");
+                            }}
+                        >
                             <LinkIcon className=" h-3 mr-1" />
                             <div className="">Copy Link</div>
                         </button>

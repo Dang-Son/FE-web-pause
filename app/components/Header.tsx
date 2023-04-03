@@ -67,9 +67,7 @@ export default function Example() {
     const onSearchKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         // If hit enter
         if (event && event.key === "Enter") {
-            navigate("/search", {
-                state: searchKeyWord,
-            });
+            navigate(`/search?search=${searchKeyWord}`);
         }
     };
 
@@ -133,8 +131,7 @@ export default function Example() {
                         />
                         <Link
                             className="justify-end mr-2 bg-red-"
-                            to={"/search"}
-                            state={searchKeyWord}
+                            to={`/search?search=${searchKeyWord}`}
                         >
                             <MagnifyingGlassIcon className="w-4 mt-1 hover:text-orange-500" />
                         </Link>
