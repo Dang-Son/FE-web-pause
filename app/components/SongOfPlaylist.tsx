@@ -10,7 +10,7 @@ function SongOfPlaylist(prop: TlistSongProp) {
 
   return (
     <Link
-      className="song relative h-12 items-center mb-2 space-x-5 border-b-2 border-gray-100 w-full "
+      className="song relative h-12 items-center mb-2 space-x-5 border-b-2 border-gray-100 w-full"
       to={`/song/${prop.song.id}`}
     >
       <div className="flex items-center">

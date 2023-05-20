@@ -83,8 +83,8 @@ const MusicBar = () => {
             alt="logo"
           />
           <div className="info text-base  ">
-            <div className="artist font-light ">Son vjp pro no.1 world</div>
-            <div className="name">name</div>
+            <div className="artist font-light ">name's song</div>
+            <div className="name">artist's name</div>
           </div>
           <div className="interact flex space-x-2">
             {/* Like */}

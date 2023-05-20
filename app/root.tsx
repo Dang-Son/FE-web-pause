@@ -16,7 +16,7 @@ import type {
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "Spotify",
+  title: "Pause",
   viewport: "width=device-width,initial-scale=1",
 });
 
@@ -31,6 +31,10 @@ export default function App() {
           href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation&display=swap"
           rel="stylesheet"
         />
+        <script
+          src="https://upload-widget.cloudinary.com/global/all.js"
+          type="text/javascript"
+        ></script>
       </head>
       <body>
         <Header />
