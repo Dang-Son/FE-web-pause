@@ -3,6 +3,7 @@ import type { LoaderArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import SidebarArtist from "~/components/SidebarArtist";
 import SongInfo from "~/components/SongInfo";
+import WriteComment from "~/components/WriteComment";
 import { variable } from "~/constant/constant";
 import type { TSong } from "~/storage/AppContext";
 
@@ -47,6 +48,9 @@ function SingleSongPage() {
                         </button>
                     </div>
                 </div>
+            </div>
+            <div className="h-fit flex overflow-hiden w-full lg:px-8 mx-auto max-w-7xl">
+                <WriteComment/>
             </div>
             <div className="h-screen flex overflow-hidden w-full lg:px-8 mx-auto max-w-7xl ">
                 <SongInfo song={song} />
