@@ -11,7 +11,7 @@ function Song(prop: TSongProps) {
   return (
     <Link
       className=" min-w-[144px] h-48 mx-3 my-3 text-sm hover:scale-110 cursor-pointer transition duration-250 ease-out"
-      to={`/Album/${album.id}`}
+      to={`/album/${album.id}`}
     >
       <div className="relative w-36 h-36 mb-3">
         <img

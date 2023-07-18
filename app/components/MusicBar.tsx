@@ -31,8 +31,8 @@ const MusicBar = () => {
   const [like, setLike] = useState(true);
   const [follow, setFollow] = useState(true);
 
-  const [timeStart, setTimeStart] = useState("0");
-  const [timeEnd, setTimeEnd] = useState("--");
+  const [timeStart, setTimeStart] = useState(0);
+  const [duration, setDuration] = useState(0);
 
   if (demo.currentSongData.title.length <= 0) {
     return <div></div>;
@@ -41,10 +41,15 @@ const MusicBar = () => {
   const onLoading = (prosp?: any) => {
     console.log("demoi22i1", prosp.duration);
     if (prosp.duration) {
-      setTimeEnd(getTimeByDuration(Number.parseInt(prosp.duration)).toString());
+      setDuration(Number.parseInt(prosp.duration));
     }
   };
 
+  const progress = parseInt(((timeStart / 100) * 400).toString());
+  console.log(
+    "🚀 TAM ~ file: MusicBar.tsx:49 ~ MusicBar ~ progress:",
+    progress + "px"
+  );
   return (
     <div className="fixed w-full h-auto bottom-0 bg-gray-100 z-50 border-t border-gray-300">
       <Sound
@@ -55,10 +60,9 @@ const MusicBar = () => {
         ref={soundRef}
         onPlaying={(props?: any) => {
           console.log("PLAYUING", props);
-          if (props.position) {
-            setTimeStart(
-              getTimeStartByDuration(Number.parseInt(props.position)).toString()
-            );
+          if (props.position && duration) {
+            const newTimeProgress = (props.position / duration) * 100;
+            setTimeStart(parseInt(newTimeProgress.toString()));
           }
         }}
         url={demo.currentSongData.audioURL}
@@ -105,11 +109,16 @@ const MusicBar = () => {
         <div className="flex items-center space-x-2">
           <div className="">{timeStart}</div>
           <div className="">
-            <div className="flex items-center h-1 min-w-[400px] bg-red-800/60 rounded-sm">
-              <div className=" rounded-full w-2 h-2 bg-black shadow hover:cursor-pointer"></div>
+            <div
+              className={`flex items-center h-1 min-w-[400px] bg-red-800/60 rounded-sm translate-x-[${progress}px]`}
+            >
+              <div
+                key={timeStart}
+                className={`rounded-full w-2 h-2 bg-black shadow hover:cursor-pointer`}
+              ></div>
             </div>
           </div>
-          <div className="">{timeEnd}</div>
+          <div className="">{100}</div>
         </div>
 
         {/* sound */}
