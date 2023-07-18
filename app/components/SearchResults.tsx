@@ -4,16 +4,25 @@ import {
   LinkIcon,
   ShareIcon,
 } from "@heroicons/react/24/outline";
-import { HeartIcon, FlagIcon, PlayIcon } from "@heroicons/react/20/solid";
+import {
+  HeartIcon,
+  FlagIcon,
+  PlayIcon,
+  PauseIcon,
+} from "@heroicons/react/20/solid";
 import { Link } from "@remix-run/react";
-import type { TSong } from "~/storage/AppContext";
+import { LevelContext, type TSong } from "~/storage/AppContext";
+import { useContext } from "react";
 
 export type TSongProps = {
+  song: TSong;
   song: TSong;
 };
 function SearchResults(prop: TSongProps) {
   const artist = (prop.song as any).relationships.artist.data.attributes;
   const song = prop.song.attributes;
+
+  const demo = useContext(LevelContext);
 
   return (
     <div className="flex h-24 my-7 mx-3">
@@ -32,7 +41,7 @@ function SearchResults(prop: TSongProps) {
         <div className="artist flex justify-between h-3/4">
           <div className="">
             <Link
-              to={`/profile/${prop.song.relationships.artist.data.id}`}
+              to={`/profile/${(prop.song as any).relationships.artist.data.id}`}
               className=" block artist font-extralight text-gray-500"
             >
               {artist.name}
@@ -45,7 +54,51 @@ function SearchResults(prop: TSongProps) {
             </Link>
           </div>
           <button className="flex justify-center items-center bg-orange-500 rounded-full w-10 h-10 mt-2">
-            <PlayIcon className="h-7 text-white translate-x-[2px]" />
+            {!(
+              demo.currentSongData.isPlaying &&
+              demo.currentSongData.title === song.name
+            ) ? (
+              <PlayIcon
+                className="h-7 text-white translate-x-[2px]"
+                onClick={() =>
+                  demo.updateState("currentSongData", {
+                    ...demo.currentSongData,
+                    id: prop.song.id,
+                    album: (prop.song as any).relationships.playlists.data
+                      .attributes.name,
+                    artist: (prop.song as any).relationships.artist.data
+                      .attributes.name,
+                    title: (prop.song as any).attributes.name,
+                    image: (prop.song as any).attributes.imageURL,
+                    isPlaying:
+                      demo.currentSongData.title !== song.name
+                        ? true
+                        : !demo.currentSongData.isPlaying,
+                    audioURL: (prop.song as any).attributes.audioURL,
+                  })
+                }
+              />
+            ) : (
+              <PauseIcon
+                className="h-7 text-white translate-x-[-1px]"
+                onClick={() =>
+                  demo.updateState("currentSongData", {
+                    ...demo.currentSongData,
+                    album: (prop.song as any).relationships.playlists.data
+                      .attributes.name,
+                    artist: (prop.song as any).relationships.artist.data
+                      .attributes.name,
+                    title: (prop.song as any).attributes.name,
+                    image: (prop.song as any).attributes.imageURL,
+                    isPlaying:
+                      demo.currentSongData.title !== song.name
+                        ? true
+                        : !demo.currentSongData.isPlaying,
+                    audioURL: (prop.song as any).attributes.audioURL,
+                  })
+                }
+              />
+            )}
           </button>
         </div>
         <div className="interact relative h-1/4 text-sm">

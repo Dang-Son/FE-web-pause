@@ -1,11 +1,12 @@
-import { PlayIcon } from "@heroicons/react/20/solid";
+import { PauseIcon, PlayIcon } from "@heroicons/react/20/solid";
 import type { LoaderArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
+import { useContext } from "react";
 import SidebarArtist from "~/components/SidebarArtist";
 import SongInfo from "~/components/SongInfo";
 import WriteComment from "~/components/WriteComment";
 import { variable } from "~/constant/constant";
-import type { TSong } from "~/storage/AppContext";
+import { LevelContext, type TSong } from "~/storage/AppContext";
 
 export const loader = async ({ params }: LoaderArgs) => {
   const response = await await fetch(
@@ -21,6 +22,16 @@ function SingleSongPage() {
   const { song } = useLoaderData<typeof loader>() as unknown as {
     song: TSong;
   };
+  const demo = useContext(LevelContext);
+  console.log(
+    "🚀 TAM ~ file: $songId.tsx:25 ~ SingleSongPage ~ song:",
+    demo.currentSongData,
+    song
+  );
+
+  const isPlayingSong =
+    demo.currentSongData.isPlaying &&
+    demo.currentSongData.title === song.attributes.name;
 
   const imageURL = song.attributes.imageURL;
   return (
@@ -39,9 +50,49 @@ function SingleSongPage() {
               <p className="text-gray text-sm">{song.attributes.author_name}</p>
             </div>
 
-            <button className="flex justify-center items-center bg-orange-500 rounded-full w-12 h-12 mt-2 absolute top-8 right-10">
-              <PlayIcon className="h-8 text-white translate-x-[2px]" />
-            </button>
+            {!isPlayingSong ? (
+              <button className="flex justify-center items-center bg-orange-500 rounded-full w-12 h-12 mt-2 absolute top-8 right-10">
+                <PlayIcon
+                  className="h-8 text-white translate-x-[2px]"
+                  onClick={() =>
+                    demo.updateState("currentSongData", {
+                      ...demo.currentSongData,
+
+                      id: song.id,
+                      album: (song as any).relationships.playlists.data
+                        .attributes.name,
+                      artist: (song as any).relationships.artist.data.attributes
+                        .name,
+                      title: song.attributes.name,
+                      isPlaying: !demo.currentSongData.isPlaying,
+                      audioURL: song.attributes.audioURL,
+                      image: imageURL,
+                    })
+                  }
+                />
+              </button>
+            ) : (
+              <button className="flex justify-center items-center bg-orange-500 rounded-full w-12 h-12 mt-2 absolute top-8 right-10">
+                <PauseIcon
+                  className="h-8 text-white translate-x-[-1px]"
+                  onClick={() =>
+                    demo.updateState("currentSongData", {
+                      ...demo.currentSongData,
+
+                      id: song.id,
+                      album: (song as any).relationships.playlists.data
+                        .attributes.name,
+                      artist: (song as any).relationships.artist.data.attributes
+                        .name,
+                      title: song.attributes.name,
+                      isPlaying: !demo.currentSongData.isPlaying,
+                      audioURL: song.attributes.audioURL,
+                      image: imageURL,
+                    })
+                  }
+                />
+              </button>
+            )}
           </div>
         </div>
       </div>

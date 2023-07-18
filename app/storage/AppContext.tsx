@@ -19,7 +19,7 @@ export default createContext<TAppContext>({
   },
   isLoading: true,
   showMusicBar: true,
-  userData: "",
+  userData: undefined,
   sound: undefined,
   toggleIsPlaying: () => {},
   updateState: () => {},
@@ -115,3 +115,23 @@ export type TPlaylist = TAlbum & {
     songs: { data: TSongResource[] };
   };
 };
+
+export const LevelContext = createContext<MyState>({
+  currentSongData: {
+    album: "",
+    artist: "",
+    image: "",
+    length: 0,
+    title: "",
+    isPlaying: false,
+    audioURL: "",
+    id: 0,
+  },
+  userData: undefined,
+  isLoading: false,
+  showMusicBar: false,
+  sound: undefined,
+  updateState: function (key: any, value: any): void {
+    alert("error");
+  },
+});

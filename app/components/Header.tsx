@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Dialog, Disclosure, Popover } from "@headlessui/react";
 import {
   ArrowPathIcon,
@@ -16,6 +16,7 @@ import {
   PlayCircleIcon,
 } from "@heroicons/react/20/solid";
 import { Link, useNavigate } from "@remix-run/react";
+import { LevelContext } from "~/storage/AppContext";
 
 const products = [
   {
@@ -63,6 +64,9 @@ export default function Example() {
 
   const [searchKeyWord, setSearchKeyword] = useState("");
   const navigate = useNavigate();
+
+  const demo = useContext(LevelContext);
+  console.log("🚀 TAM ~ file: Header.tsx:69 ~ Example ~ demo:", demo.userData);
 
   const onSearchKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     // If hit enter
@@ -142,12 +146,23 @@ export default function Example() {
               <MagnifyingGlassIcon className="w-4 mt-1 hover:text-orange-500" />
             </Link>
           </div>
-          <Link
-            to="/login"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Log in <span aria-hidden="true">&rarr;</span>
-          </Link>
+
+          {demo.userData ? (
+            <Link
+              to="/logout"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              {demo?.userData.attributes.name} Logout
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
+          ) : (
+            <Link
+              to="/login"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Log in <span aria-hidden="true">&rarr;</span>
+            </Link>
+          )}
         </div>
       </nav>
       <Dialog

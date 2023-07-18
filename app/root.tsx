@@ -13,6 +13,7 @@ import type {
   LinksFunction,
   MetaFunction,
 } from "@remix-run/react/dist/routeModules";
+import { LevelProvider } from "./storage/AppState";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -37,8 +38,11 @@ export default function App() {
       </head>
       <body>
         <Header />
-        <Outlet />
-        <MusicBar />
+        <LevelProvider>
+          <Outlet />
+
+          <MusicBar />
+        </LevelProvider>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

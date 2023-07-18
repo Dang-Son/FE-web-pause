@@ -4,22 +4,66 @@ import {
   ForwardIcon,
   HeartIcon,
   PlayIcon,
+  PlayPauseIcon,
   SpeakerWaveIcon,
   SpeakerXMarkIcon,
   UserPlusIcon,
 } from "@heroicons/react/20/solid";
 import { PauseIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import Sound from "react-sound";
+import { useContext, useEffect, useRef, useState } from "react";
+import { LevelContext } from "~/storage/AppContext";
+import { getTimeByDuration, getTimeStartByDuration } from "~/utils/utils";
 
 const MusicBar = () => {
+  const demo = useContext(LevelContext);
+
+  const soundRef = useRef(null);
+
+  console.log(
+    "🚀 TAM ~ file: MusicBar.tsx:17 ~ MusicBar ~ demo:",
+    demo.currentSongData
+  );
+
   const [pause, setPause] = useState(true);
   const [sound, setSound] = useState(true);
   const [repeat, setRepeat] = useState(true);
   const [like, setLike] = useState(true);
   const [follow, setFollow] = useState(true);
 
+  const [timeStart, setTimeStart] = useState("0");
+  const [timeEnd, setTimeEnd] = useState("--");
+
+  if (demo.currentSongData.title.length <= 0) {
+    return <div></div>;
+  }
+
+  const onLoading = (prosp?: any) => {
+    console.log("demoi22i1", prosp.duration);
+    if (prosp.duration) {
+      setTimeEnd(getTimeByDuration(Number.parseInt(prosp.duration)).toString());
+    }
+  };
+
   return (
     <div className="fixed w-full h-auto bottom-0 bg-gray-100 z-50 border-t border-gray-300">
+      <Sound
+        // onLoading={(chicke: any) => { //   console.log("C22", chicke);
+        // }}
+        loop={repeat}
+        onLoading={onLoading}
+        ref={soundRef}
+        onPlaying={(props?: any) => {
+          console.log("PLAYUING", props);
+          if (props.position) {
+            setTimeStart(
+              getTimeStartByDuration(Number.parseInt(props.position)).toString()
+            );
+          }
+        }}
+        url={demo.currentSongData.audioURL}
+        playStatus={demo.currentSongData.isPlaying ? "PLAYING" : "PAUSED"}
+      />
       <div className="mx-auto flex max-w-7xl items-center justify-center space-x-5 p-6 lg:px-8 h-12">
         {/* Backward */}
         <button className="">
@@ -28,7 +72,11 @@ const MusicBar = () => {
         {/* Pause */}
         {pause === true ? (
           <button className="" onClick={() => setPause(false)}>
-            <PlayIcon className="h-4 text-black-800/60" />
+            {!demo.currentSongData.isPlaying ? (
+              <PlayIcon className="h-4 text-black-800/60" />
+            ) : (
+              <PauseIcon className="h-4 text-black-800/60" />
+            )}
           </button>
         ) : (
           <button className="" onClick={() => setPause(true)}>
@@ -55,13 +103,13 @@ const MusicBar = () => {
 
         {/* play time */}
         <div className="flex items-center space-x-2">
-          <div className="">0:00</div>
+          <div className="">{timeStart}</div>
           <div className="">
             <div className="flex items-center h-1 min-w-[400px] bg-red-800/60 rounded-sm">
               <div className=" rounded-full w-2 h-2 bg-black shadow hover:cursor-pointer"></div>
             </div>
           </div>
-          <div className="">10:00</div>
+          <div className="">{timeEnd}</div>
         </div>
 
         {/* sound */}
@@ -79,12 +127,14 @@ const MusicBar = () => {
         <div className="song flex items-center space-x-3">
           <img
             className="object-center w-9 h-9 rounded-mg "
-            src="https://picsum.photos/200"
+            src={demo.currentSongData.image}
             alt="logo"
           />
           <div className="info text-base  ">
-            <div className="artist font-light ">Son vjp pro no.1 world</div>
-            <div className="name">name</div>
+            <div className="artist font-light ">
+              {demo.currentSongData.title}
+            </div>
+            <div className="name">{demo.currentSongData.artist}</div>
           </div>
           <div className="interact flex space-x-2">
             {/* Like */}

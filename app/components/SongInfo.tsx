@@ -2,29 +2,32 @@ import { SignalIcon, UserPlusIcon, UsersIcon } from "@heroicons/react/20/solid";
 import { TComment, TSong } from "~/storage/AppContext";
 import Comment from "./Comment";
 import type { TSongProps } from "./SearchResults";
+import { Link } from "@remix-run/react";
 
 function SongInfo(prop: TSongProps) {
   const artist = (prop.song as any).relationships.artist.data.attributes;
   const song = prop.song.attributes;
+
   const comments = prop.song.relationships.comments
     .data as unknown as TComment[];
   const sortedComments = comments.sort((c1, c2) =>
     (c1 as any).created_at > (c2 as any).created_at ? -1 : 1
   );
 
-  console.log("chicken", sortedComments);
-
   return (
     <div className="flex w-3/4 h-screen pt-5 bg-white">
       <div className="w-1/4  h-full avatar justify-center">
         {/* avatar */}
-        <div className="w-full flex justify-center mb-3">
+        <Link
+          to={`/profile/${prop.song.relationships.artist.data.id}`}
+          className="w-full flex justify-center mb-3"
+        >
           <img
             className="object-center w-40 h-40 rounded-full"
             src={artist.avtURL}
             alt="logo"
           />
-        </div>
+        </Link>
         {/* interact */}
         <div className="pl-10">
           <div className="name">{artist.name}</div>
@@ -51,11 +54,6 @@ function SongInfo(prop: TSongProps) {
         </div>
         <div className="song_info">
           <form className="description mr-3 pt-3">{song.description}</form>
-        </div>
-        <div className="">
-          {sortedComments.map((comment: TComment) => (
-            <Comment comment={comment} key={comment.id} />
-          ))}
         </div>
       </div>
     </div>
