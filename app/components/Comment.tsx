@@ -1,4 +1,8 @@
-function Comment() {
+import type { TComment } from "~/storage/AppContext";
+
+function Comment(props: { comment: TComment }) {
+  const comments = props.comment;
+  console.log("get_comment", comments.relationships.user);
   return (
     <div className="flex mt-5 mx-5">
       {/* Avatar user */}
@@ -12,9 +16,11 @@ function Comment() {
       {/* Comment */}
       <div className="">
         {/* User's name */}
-        <div className=" font-thin text-slate-400">Son vjppro No1</div>
+        <div className=" font-thin text-slate-400">
+          {comments.relationships.user.data.attributes.name}
+        </div>
         {/* User's comment */}
-        <div className=" font-medium">Day la mot bai hat hay day y nghia</div>
+        <div className=" font-medium">{comments.attributes.content}</div>
       </div>
     </div>
   );

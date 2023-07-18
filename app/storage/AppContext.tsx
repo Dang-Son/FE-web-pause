@@ -50,6 +50,27 @@ export type TSong = {
     playlist_id: string;
     views: number;
   };
+  relationships: {
+    comments: {
+      data: {
+        attributes: {
+          content: string;
+        };
+      };
+    };
+  };
+};
+
+export type TComment = {
+  id: string;
+  attributes: {
+    content: string;
+  };
+  relationships: {
+    user: {
+      data: TUser;
+    };
+  };
 };
 
 export type TArtistResource = {

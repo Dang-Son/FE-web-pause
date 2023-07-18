@@ -26,7 +26,10 @@ export default function App() {
       <head>
         <Meta />
         <Links />
-
+        <script
+          src="https://upload-widget.cloudinary.com/global/all.js"
+          type="text/javascript"
+        ></script>
         <link
           href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation&display=swap"
           rel="stylesheet"
