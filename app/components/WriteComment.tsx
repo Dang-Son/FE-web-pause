@@ -1,6 +1,6 @@
 import { useNavigate } from "@remix-run/react";
 import { useState } from "react";
-import { TSong } from "~/storage/AppContext";
+import type { TSong } from "~/storage/AppContext";
 
 function WriteComment(prop: { song: TSong }) {
   const get_song_id = prop.song.id;
@@ -25,6 +25,10 @@ function WriteComment(prop: { song: TSong }) {
     });
 
     const responseJason = await response.json();
+    setComment({
+      ...comment,
+      content: "" as any,
+    });
     navigate(".", { replace: true });
   };
 
@@ -42,7 +46,7 @@ function WriteComment(prop: { song: TSong }) {
             type="text"
             id="name"
             name="title"
-            className="bg-white rounded w-full h-6 mx-2 px-2"
+            className="bg-white rounded w-full h-6 mx-2 px-2  outline-none"
             placeholder="  Write your comment"
             required
             value={comment.content}
@@ -53,7 +57,7 @@ function WriteComment(prop: { song: TSong }) {
         </div>
       </div>
       <button
-        className="bg-orange-600/100 w-fit h-full p-2 text-white mr-10 my-4 btn"
+        className="bg-orange-600/100 border-none  w-fit h-full p-2 text-white mr-10 my-4 btn"
         onClick={uploadComment}
       >
         Submit

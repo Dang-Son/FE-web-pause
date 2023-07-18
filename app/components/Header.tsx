@@ -160,7 +160,7 @@ export default function Example() {
               to="/login"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
-              Log in <span aria-hidden="true">&rarr;</span>
+              Dang Son <span aria-hidden="true">&rarr;</span>
             </Link>
           )}
         </div>
