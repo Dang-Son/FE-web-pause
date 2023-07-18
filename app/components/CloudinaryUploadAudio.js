@@ -37,14 +37,14 @@ class CloudinaryUploadWidget extends Component {
           if (!error && result && result.event === "success") {
             console.log("Done! Here is the image info: ", result.info);
             document
-              .getElementById("uploadedImage")
-              .setAttribute("src", result.info.secure_url);
+              .getElementById("uploadedAudio")
+              .setAttribute("title", result.info.secure_url);
             this.setState({ imageURL: result.info.secure_url });
           }
         }
       );
       this.props.myWidget.current = temMyWidget;
-      document.getElementById("upload_widget").addEventListener(
+      document.getElementById("upload_widget2").addEventListener(
         "click",
         function () {
           console.log("asdsd", temMyWidget);
@@ -62,8 +62,8 @@ class CloudinaryUploadWidget extends Component {
     return (
       <>
       {/* {JSON.stringify(this.state)} */}
-      <button id="upload_widget" className="btn mt-3">
-        Upload Image
+      <button id="upload_widget2" className="btn mt-3">
+        Upload Audio
       </button>
       </>
     );

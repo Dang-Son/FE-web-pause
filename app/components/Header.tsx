@@ -108,7 +108,7 @@ export default function Example() {
             Search
           </Link>
           <Link
-            to="/Profile"
+            to="/Profile/1"
             className="text-sm font-semibold leading-6 text-gray-900"
           >
             Profile
